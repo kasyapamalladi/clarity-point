@@ -9,15 +9,21 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
+    <div id="particle-background"></div>
     <section id="top" class="hero-section">
         <div class="container">
             <header>
                 <img src="Final Logo.png" alt="CP Consulting" class="logo">
-                <nav>
+                <nav id="main-nav">
                     <a href="#challenges">Challenges</a>
                     <a href="#how-we-help">How We Help</a>
                     <a href="#contact">Contact Us</a>
                 </nav>
+                <button id="hamburger-btn" class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
             </header>
         </div>
         
@@ -97,7 +103,11 @@
         <p>© 2025 Clarity Point Consulting</p>
     </footer>
 
-    <a href="#top" id="back-to-top-btn" class="back-to-top" aria-label="Go to top of page">&#8679;</a>
+    <a href="#top" id="back-to-top-btn" class="back-to-top" aria-label="Go to top of page">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
 
     <script type="module" src="index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
