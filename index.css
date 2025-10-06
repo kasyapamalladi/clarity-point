@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -10,10 +12,76 @@ html {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #ffffff;
+    background: transparent;
+    color: #f0f0f0;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+#particle-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: #123;
+}
+
+#particle-background::before,
+#particle-background::after {
+    display: block;
+    font-size: 52px;
+    color: transparent;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 3em;
+    height: 3em;
+    content: '.';
+    mix-blend-mode: screen;
+    animation: 44s -27s move infinite ease-in-out alternate;
+}
+
+#particle-background::before {
+    animation-duration: 44s;
+    animation-delay: -27s;
+    text-shadow: 1.15em -0.06em 7px hsla(27, 100%, 50%, 0.9),
+        -0.34em 0.81em 7px hsla(335, 100%, 50%, 0.9),
+        1.93em 0.29em 7px hsla(64, 100%, 50%, 0.9),
+        1.13em 2.49em 7px hsla(220, 100%, 50%, 0.9),
+        -0.49em -0.39em 7px hsla(118, 100%, 50%, 0.9),
+        0.58em 1.18em 7px hsla(282, 100%, 50%, 0.9),
+        1.38em 0.05em 7px hsla(121, 100%, 50%, 0.9),
+        0.55em 1.63em 7px hsla(24, 100%, 50%, 0.9);
+}
+
+#particle-background::after {
+    animation-duration: 42s;
+    animation-delay: -23s;
+    text-shadow: 2.15em 1.06em 7px hsla(27, 100%, 50%, 0.9),
+        -0.34em 1.81em 7px hsla(335, 100%, 50%, 0.9),
+        1.03em 0.29em 7px hsla(164, 100%, 50%, 0.9),
+        1.93em 2.49em 7px hsla(20, 100%, 50%, 0.9),
+        -0.49em -0.39em 7px hsla(18, 100%, 50%, 0.9),
+        0.58em 1.98em 7px hsla(282, 100%, 50%, 0.9),
+        1.38em 0.05em 7px hsla(221, 100%, 50%, 0.9),
+        0.55em 1.63em 7px hsla(124, 100%, 50%, 0.9);
+}
+
+@keyframes move {
+    from {
+        transform: rotate(0deg) scale(12) translateX(-20px);
+    }
+    to {
+        transform: rotate(360deg) scale(18) translateX(20px);
+    }
 }
 
 .hero-section {
@@ -23,18 +91,7 @@ body {
     overflow-x: hidden;
     position: relative;
     z-index: 10;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, rgba(89, 172, 119, 0.5) 0%, rgba(89, 172, 119, 0.5) 50%, transparent 50%, transparent 100%);
-    z-index: 0;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
+    background: transparent;
 }
 
 .container {
@@ -44,7 +101,6 @@ body {
     width: 100%;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
 }
 
 header {
@@ -68,13 +124,48 @@ nav {
 nav a {
     font-size: 16px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #f0f0f0;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 nav a:hover {
     color: #59AC77;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #f0f0f0;
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger.is-active .hamburger-bar {
+    background-color: #ffffff;
+}
+
+.hamburger.is-active .hamburger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.is-active .hamburger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 .hero-content {
@@ -93,7 +184,7 @@ nav a:hover {
     font-size: 72px;
     font-weight: 800;
     line-height: 1.2;
-    color: #1a1a1a;
+    color: #ffffff;
     letter-spacing: -0.02em;
     margin-bottom: 10px;
 }
@@ -101,13 +192,13 @@ nav a:hover {
 .scroll-content {
     position: relative;
     z-index: 1;
-    background: #ffffff;
+    background: transparent;
 }
 
 .section-title {
     font-size: 48px;
     font-weight: 800;
-    color: #1a1a1a;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 60px;
 }
@@ -115,7 +206,6 @@ nav a:hover {
 .problems-section {
     min-height: 100vh;
     padding: 100px 0;
-    background: linear-gradient(120deg, #fff 50%, #f7f9f7 50%);
     position: relative;
     display: flex;
     align-items: center;
@@ -131,10 +221,10 @@ nav a:hover {
 }
 
 .problem-card {
-    background: #ffffff;
+    background: #1a2b3c;
     padding: 40px;
     border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #3a4b5c;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.4s ease;
     min-height: 350px;
     display: flex;
@@ -144,16 +234,16 @@ nav a:hover {
 }
 
 .problem-card:hover {
-    background: #f8fdf9;
+    background: #2a3b4c;
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-color: #59AC77;
 }
 
 .problem-card h3 {
     font-size: 24px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #ffffff;
     margin-bottom: 20px;
     line-height: 1.3;
 }
@@ -161,13 +251,12 @@ nav a:hover {
 .problem-card p {
     font-size: 16px;
     font-weight: 400;
-    color: #1a1a1a;
+    color: #f0f0f0;
     line-height: 1.7;
 }
 
 .solutions-section {
     padding: 100px 0;
-    background: #ffffff;
     position: relative;
     overflow: hidden;
     min-height: 100vh;
@@ -183,7 +272,7 @@ nav a:hover {
 
 .solution-item {
     padding: 30px 20px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #3a4b5c;
     border-left: 4px solid transparent;
     transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
@@ -194,7 +283,7 @@ nav a:hover {
 }
 
 .solution-item:hover {
-    background-color: #f8fdf9;
+    background-color: #1a2b3c;
     border-left-color: #59AC77;
     transform: translateX(10px);
 }
@@ -202,7 +291,7 @@ nav a:hover {
 .solution-item h3 {
     font-size: 24px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #ffffff;
     margin-bottom: 15px;
     line-height: 1.3;
 }
@@ -217,7 +306,7 @@ nav a:hover {
 .solution-item p {
     font-size: 16px;
     font-weight: 400;
-    color: #1a1a1a;
+    color: #f0f0f0;
     line-height: 1.7;
 }
 
@@ -226,7 +315,6 @@ nav a:hover {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(120deg, #f7f9f7 50%, #ffffff 50%);
 }
 
 .about-content {
@@ -244,8 +332,8 @@ nav a:hover {
     width: 100%;
     max-width: 400px;
     border-radius: 50%;
-    border: 8px solid #ffffff;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border: 8px solid #1a2b3c;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
@@ -253,14 +341,14 @@ nav a:hover {
 .about-text h2 {
     font-size: 40px;
     font-weight: 800;
-    color: #1a1a1a;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 .about-text p {
     font-size: 18px;
     line-height: 1.8;
-    color: #333;
+    color: #f0f0f0;
 }
 
 .about-text h2 + p {
@@ -280,7 +368,7 @@ nav a:hover {
 
 .about-text .contact-email a:hover {
     text-decoration: underline;
-    color: #1a1a1a;
+    color: #ffffff;
 }
 
 .linkedin-link {
@@ -305,7 +393,7 @@ nav a:hover {
 
 footer {
     background-color: #1a1a1a;
-    color: #f7f9f7;
+    color: #a0a0a0;
     text-align: center;
     padding: 20px 0;
     font-size: 14px;
@@ -317,20 +405,26 @@ footer {
     right: 30px;
     width: 50px;
     height: 50px;
-    background-color: #59AC77;
-    color: #ffffff;
+    background-color: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     z-index: 100;
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-to-top svg {
+    width: 24px;
+    height: 24px;
+    stroke: #59AC77;
+    stroke-width: 3;
+    transition: stroke 0.3s ease;
 }
 
 .back-to-top.show {
@@ -340,8 +434,13 @@ footer {
 }
 
 .back-to-top:hover {
-    background-color: #4a8e63;
+    background-color: #f0f0f0;
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.back-to-top:hover svg {
+    stroke: #4a8e63;
 }
 
 
@@ -369,13 +468,11 @@ footer {
     
     .problems-section {
         padding: 60px 0;
-        background: #F7F9F7;
         min-height: auto;
     }
 
     .solutions-section {
         padding: 60px 0;
-        background: #ffffff;
         min-height: auto;
     }
     
@@ -385,7 +482,6 @@ footer {
 
     .about-section {
         padding: 80px 0;
-        background: #f7f9f7;
         min-height: auto;
     }
 
@@ -441,9 +537,13 @@ footer {
     .back-to-top {
         width: 45px;
         height: 45px;
-        font-size: 20px;
         bottom: 20px;
         right: 20px;
+    }
+
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -452,8 +552,34 @@ footer {
         font-size: 32px;
     }
     
+    .hamburger {
+        display: block;
+    }
+
     nav {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(18, 35, 51, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        z-index: 1000;
+        padding: 0;
+    }
+
+    nav.is-open {
+        transform: translateX(0);
+    }
+    
+    nav a {
+        color: #ffffff;
+        font-size: 24px;
     }
 }
 
